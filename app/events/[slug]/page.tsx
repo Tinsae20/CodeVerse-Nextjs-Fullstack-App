@@ -1,7 +1,10 @@
+import BookEvent from '@/components/BookEvent';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 
 const BASE_URL=process.env.NEXT_PUBLIC_BASE_URL;
+
+const bookings = 10;
 
 const EventDetailItem = ({icon, alt, label}: { icon: string, alt: string, label: string}) => (
   <div className='flex-row-gap-2 items-center'>
@@ -74,7 +77,16 @@ const EventDetailsPage = async({ params }: { params: Promise<{ slug: string }>})
 
         {/* Right Side - Event Content*/}
           <aside className='booking'>
-            <p className='text-lg font-semibold'>Book Event</p>
+            <div className='signup-card'>
+              <h2>Book Your Spot</h2>
+              { bookings > 0 ? (
+                <p className='text-sm'>Join {bookings} people who have already booked!</p>
+              ):(
+                <p className='text-sm'>Be the first to book!</p>
+              )}
+
+              <BookEvent/>
+            </div>
           </aside>
       </div>
     </section>
